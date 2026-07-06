@@ -8,7 +8,7 @@ from telegram.ext import (
     Application, CommandHandler, MessageHandler,
     ContextTypes, filters
 )
-from config import BOT_TOKEN, ADMINS, DB_FILE
+from config import BOT_TOKEN, ADMINS, DB_FILE, BOT_INFO
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -136,7 +136,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if is_verified(user.id):
         await update.message.reply_text(
             f"👋 Salom, {user.first_name}!\n\n"
-            "✍️ Savol yoki murojaatingizni yozing — adminlarga yetkazamiz.",
+            "✍️ Savol yoki murojaatingizni yozing — adminlarga yetkazamiz.\n"
+            "ℹ️ Bot haqida to'liq ma'lumot: /yordam",
             reply_markup=ReplyKeyboardRemove()
         )
         return
@@ -152,6 +153,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "👇 Pastdagi tugmani bosing (faqat 🇺🇿 O'zbekiston raqamlari qabul qilinadi):",
         reply_markup=kb
     )
+
+
+# ═══════════ /YORDAM — BOT HAQIDA MA'LUMOT ═══════════
+async def yordam_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(BOT_INFO, parse_mode="Markdown")
 
 
 # ═══════════ KONTAKT QABUL QILISH ═══════════
@@ -464,6 +470,8 @@ def main():
            .build())
 
     app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("yordam", yordam_cmd))
+    app.add_handler(CommandHandler("help", yordam_cmd))
     app.add_handler(CommandHandler("send", send_cmd))
     app.add_handler(CommandHandler("hammaga", hammaga_cmd))
     app.add_handler(CommandHandler("stat", stat_cmd))
@@ -484,4 +492,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
