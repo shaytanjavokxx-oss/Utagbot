@@ -1,3 +1,4 @@
+
 # ═══════════ SUPPORT BOT SOZLAMALARI ═══════════
 
 # @BotFather dan olingan token.
@@ -14,7 +15,27 @@ ADMINS = [7132963801]
 # Ma'lumotlar bazasi fayli (o'zgartirmasangiz ham bo'ladi)
 DB_FILE = "support.db"
 
-# ═══════════ BOT HAQIDA MA'LUMOT (/yordam buyrug'ida chiqadi) ═══════════
+# ═══════════ /ALL — QIZIQARLI CHAQIRUV MATNLARI ═══════════
+# Har mention'ga shu ro'yxatdan TASODIFIY biri qo'shiladi.
+# Xohlaganicha qo'shing/o'chiring — bot.py ga tegmaysiz.
+ALL_JOKES = [
+    "seni yaxshi o'yin kutmoqda 🎲",
+    "bugun omading porlaydi ⭐",
+    "sendan xabar bor ekan 👀",
+    "kimdir seni sog'inibdi 💭",
+    "bugun kayfiyating zo'r bo'ladi 😎",
+    "seni katta yutuq kutmoqda 🏆",
+    "bugun kimgadir yordam ber 🤝",
+    "sen bugun MVP bo'lasan 🔥",
+    "diqqat — bu safar navbat sizda 👑",
+    "seni qiziq voqea kutmoqda 😏",
+    "bugun uyqungdan mahrum bo'lasan 😴",
+    "kimdir sen haqingda gapiryapti 🗣",
+    "seni katta ish kutmoqda 💼",
+    "bugun omad seni tark etmaydi 🍀",
+    "sen bugun kulguga to'lasan 😂",
+]
+
 # Bu matnni o'zingizga moslab o'zgartiring — bot.py ga tegmasdan shu yerdan tahrirlanadi.
 BOT_INFO = (
     "🤖 *UTAG BOT*\n"
@@ -22,7 +43,7 @@ BOT_INFO = (
     "📩 *Murojaat yuborish:*\n"
     "Botga oddiy xabar yozing — to'g'ridan-to'g'ri adminlarga yetadi.\n\n"
     "👥 *Guruh funksiyalari:*\n"
-    "🔹 /all — guruhdagi barcha faol a'zolarni teg qilib chaqiradi\n"
+    "🔹 /all — guruhdagi barcha faol a'zolarni qiziqarli matn bilan chaqiradi\n"
     "🔹 /guruh — shu guruhning faol a'zolari ro'yxati (admin uchun)\n\n"
     "ℹ️ Bot guruhga *admin* qilib qo'shilishi kerak.\n"
     "ℹ️ Faqat botga yozgan/guruhda faol bo'lgan a'zolar chaqiriladi.\n\n"
