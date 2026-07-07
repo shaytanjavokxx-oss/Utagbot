@@ -1,4 +1,5 @@
 import logging
+import random
 import sqlite3
 from telegram import (
     Update, InlineKeyboardButton, InlineKeyboardMarkup,
@@ -8,7 +9,7 @@ from telegram.ext import (
     Application, CommandHandler, MessageHandler,
     ContextTypes, filters
 )
-from config import BOT_TOKEN, ADMINS, DB_FILE, BOT_INFO
+from config import BOT_TOKEN, ADMINS, DB_FILE, BOT_INFO, ALL_JOKES
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -257,22 +258,23 @@ async def all_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Qo'shimcha matn bo'lsa (masalan /all yig'ilish bor)
     extra = " ".join(context.args) if context.args else "📢 Diqqat!"
 
-    # Teglar — Telegram xabarda 50 tadan ko'p mention og'ir bo'ladi, 40 tadan bo'lamiz
-    mentions = []
+    # Har a'zoga: teg + tasodifiy hazil matn, alohida qatorda
+    lines = []
     for uid, fname, uname in members:
         if uname:
-            mentions.append(f"@{uname}")
+            mention = f"@{uname}"
         else:
-            # username yo'q bo'lsa — ism orqali havola (bosiladigan)
             safe = (fname or "user").replace("<", "").replace(">", "")
-            mentions.append(f'<a href="tg://user?id={uid}">{safe}</a>')
+            mention = f'<a href="tg://user?id={uid}">{safe}</a>'
+        joke = random.choice(ALL_JOKES)
+        lines.append(f"{mention} {joke}")
 
-    for i in range(0, len(mentions), 40):
-        chunk = mentions[i:i + 40]
+    for i in range(0, len(lines), 25):
+        chunk = lines[i:i + 25]
         header = extra + "\n\n" if i == 0 else ""
         await context.bot.send_message(
             chat_id,
-            header + " ".join(chunk),
+            header + "\n".join(chunk),
             parse_mode="HTML"
         )
 
